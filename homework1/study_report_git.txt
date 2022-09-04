@@ -7,3 +7,6 @@
 	每次提交的必经步骤是要先从工作区add到暂存区（git add .）
 	然后对暂存区的文件进行commit（git commit -m "......"）（注意要用英文字符）
 	有时候要推上例如github仓库时要push，创建PR（pull request）
+
+图1的界面中，rescan是重新扫描文件的更新情况，stage change是已修改的暂存区，在右边的白板区域
+填写评论后点击commit就能作为一个历史版本存到本地库。
