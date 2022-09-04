@@ -1,0 +1,23 @@
+事件一：《中华人民共和国数据安全法》《关键信息基础设施安全保护条例》《中华人民共和国个人信息保护法》等网络安全相关法律施行。、
+事件二：黑客攻击美国佛罗里达水务公司，供水系统险遭“投毒”https://hackernews.cc/achives/37181
+事件三：微软Exchange Server 产品曝严重安全漏洞，FBI从被黑服务器中移除后门
+详情   https://hackernews.cc/archives/35131
+	https://hackernews.cc/archives/35212
+事件四：美国保险巨头CNA Financia被勒索4000万美元赎金，破赎金最高纪录
+详情：https://www.cnbeta.com/articles/tech/1130609.htm
+事件五：两大数据泄露事件——Facebook 5.33亿用户、领英7亿用户数据泄露，于暗网出售
+详情：https://hackernews.cc/archives/35159
+	https://hackernews.cc/archives/37186
+事件六：美国最大成品油管道运营商Colonial Pipeline遭到网络攻击
+详情：https://hackernews.cc/archives/35338
+	https://hackernews.cc/archives/35368
+事件七：SolarWinds事件背后由俄罗斯支持的Nobelium黑客瞄准全球IT供应链
+详情：https://hackernews.cc/archives/36551
+事件八：微软称其抵挡了有史以来最大的 DDoS 攻击 带宽负载高达 2.4 Tbps
+详情：https://hackernews.cc/archives/36395
+事件九：核弹级漏洞log4shell席卷全球
+详情：https://hackernews.cc/archives/37005
+	https://hackernews.cc/archives/37035
+	https://hackernews.cc/archives/37070
+事件十：英国国家打击犯罪局向HIBP披露 5.85 亿个被泄露的密码
+详情：https://hackernews.cc/archives/37087
