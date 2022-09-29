@@ -16,3 +16,10 @@ class load_data(object):
 class save_data(object):
     def write_txt():
         pass
+    
+def get_char_num(data:list)->dict:
+    charset = set(data)
+    result = {}
+    for c in charset:
+        result[c] = data.count(c)
+    return result
