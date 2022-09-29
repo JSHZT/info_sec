@@ -3,27 +3,31 @@ import re
 import os
 
 class XOR_code(object):
-    def Encryption(data:list)->list:
+    def Encryption(self, data:list, key:str)->list:
         result = []
+        for i in data:
+            result.append(self.encryption_line(i, key))
         return result
-    
-    def Decrypt(data:list)->list:
+
+    def Decrypt(self, data:list, key:list)->list:
         result = []
+        for i in data:
+            result.append(self.decryption_line(i, key))
         return result
-    
-    def str2int(self, string):
+
+    def str2int(self, string:str)->int:
         str_byte = string.encode('utf-8')
         str_hex = str_byte.hex()
         str2int = int(str_hex,16)
         return str2int
 
-    def int2str(self, interger):
+    def int2str(self, interger:int)->str:
         int2hex = hex(interger)
         hex2byte = bytes.fromhex(int2hex[2:])
         byte2str = hex2byte.decode('utf-8')
         return byte2str
 
-    def encryption_line(self, string, key):
+    def encryption_line(self, string, key)->str:
         string2int = self.str2int(string)
         key2int = self.str2int(key)
         len_str = len(str(string2int))
