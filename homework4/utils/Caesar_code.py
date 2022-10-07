@@ -1,3 +1,6 @@
+import re
+
+
 class Caesar_code(object):
     def __init__(self):
         self.letterSList = (
