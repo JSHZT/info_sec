@@ -4,7 +4,7 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.getcwd(), ".")))
 sys.path.append(os.path.abspath(os.path.dirname(os.path.abspath(os.path.abspath(__file__))) + os.path.sep + "."))
 
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QMainWindow, QMessageBox
 from PyQt5 import QtWidgets
 from mainwin import Ui_MainWindow
 from utils import DataOP, Caesar_code, XOR_code, hill_code, Playfair
@@ -28,6 +28,21 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
         self.decode_button_file.clicked.connect(self.chose_way_file_de)
         self.ouput_file_de.clicked.connect(self.output_file_dec)
         self.ouput_file_en.clicked.connect(self.output_file_enc)
+        self.menu.addAction('系统概述', self.introduction)
+        
+        
+    def introduction(self):
+        QMessageBox.about(self, '系统概述',
+                          '本系统包含异或、凯撒、希尔、playfair四种加密解密算法，并能够对文件和直接对字符加密解密，同时加入了文件读写和字符统计，以方便其他需求\n' +
+                          '1.软件分为两个tab，分别对应直接对字符串和对文件的操作\n' +
+                          '2.key不输入的时候会系统会有个默认的key，如果自己输入一定要注意格式\n' +
+                          '2.1 异或的key格式是字符串\n' +
+                          '2.2 凯撒的key格式是整数\n' +
+                          '2.3 playfair不需要key\n' +
+                          '2.4 hill的key比较复杂，需要一个可逆矩阵，并且加密的数据一定要做好对齐\n' +
+                          '3. 加密和解密的结果中字符的种类和数目将会被统计并输出\n' +
+                          '4. 文件操作tab中带有文件输出的功能\n'
+                          )
 
     def output_file_enc(self):
         directory = QtWidgets.QFileDialog.getOpenFileName(None,  "选取文件","./", "Text Files (*.txt)")[0]
