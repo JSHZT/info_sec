@@ -25,7 +25,7 @@ class save_data(object):
         with open(filepath,"w") as f:
             f.write(data)
     
-def get_char_num(data:list)->dict:
+def get_char_num(data)->dict:
     charset = set(data)
     result = {}
     for c in charset:

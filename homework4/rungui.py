@@ -1,4 +1,11 @@
-from GUI import gui
+import PyQt5 as qt
+import os
+import sys
+from PyQt5.QtWidgets import QApplication
+from GUI.gui import MyMainForm
 
 if __name__ == "__main__":
-    pass
+    app = QApplication(sys.argv)
+    myWin = MyMainForm()
+    myWin.show()
+    sys.exit(app.exec_())

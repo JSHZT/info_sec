@@ -1,10 +1,12 @@
 import PyQt5 as qt
 import os
 import sys
+sys.path.append(os.path.abspath(os.path.join(os.getcwd(), ".")))
+sys.path.append(os.path.abspath(os.path.dirname(os.path.abspath(os.path.abspath(__file__))) + os.path.sep + "."))
+
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5 import QtWidgets
 from mainwin import Ui_MainWindow
-sys.path.append(os.path.abspath(os.path.join(os.getcwd(), ".")))
 from utils import DataOP, Caesar_code, XOR_code, hill_code, Playfair
 
 class MyMainForm(QMainWindow, Ui_MainWindow):
@@ -29,12 +31,16 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
 
     def output_file_enc(self):
         directory = QtWidgets.QFileDialog.getOpenFileName(None,  "选取文件","./", "Text Files (*.txt)")[0]
+        if directory == '':
+            return
         DataOP.save_data().write_txt_gui(self.result_en, directory)
         
     def output_file_dec(self):
         directory = QtWidgets.QFileDialog.getOpenFileName(None,  "选取文件","./", "Text Files (*.txt)")[0]
+        if directory == '':
+            return
         DataOP.save_data().write_txt_gui(self.result, directory)
-            
+        
     def chose_way_file(self):
         way = self.comboBox_file.currentText()
         if way == 'Caecar(凯撒加密解密)':
@@ -84,6 +90,15 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
         self.URL_show.setText(directory)
         self.filepath = directory
         
+    def print_charnum(self, isfile, dict_:dict):
+        str_ = ''
+        for key,value in dict_.items():
+            str_ +="(" + str(key) + ": " + str(value) + ") "
+        if isfile:
+            self.char_num_file.setText(str_)
+        else:
+            self.char_num_d.setText(str_)
+            
     def caesar_encode(self, isfile:bool):
         if isfile:
             data = DataOP.load_data().load_txt_gui(self.filepath)
@@ -94,6 +109,8 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
                 self.result_en += line
             self.textBrowser_file.setText(self.result_en)
             self.caesar_key = 5
+            char_dict = DataOP.get_char_num(self.result_en)
+            self.print_charnum(isfile, char_dict)
         else:
             self.input = self.input_str_d.toPlainText()
             data = [self.input]
@@ -104,6 +121,8 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
                 self.result_en += line
             self.textBrowser_d.setText(self.result_en)
             self.caesar_key = 5
+            char_dict = DataOP.get_char_num(self.result_en)
+            self.print_charnum(isfile, char_dict)
             
     def XOR_encode(self, isfile):
         if isfile:
@@ -115,6 +134,8 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
                 self.result_en += line
             self.textBrowser_file.setText(self.result_en)
             self.xor_key = 'default'
+            char_dict = DataOP.get_char_num(self.result_en)
+            self.print_charnum(isfile, char_dict)
         else:
             self.input = self.input_str_d.toPlainText()
             data = [self.input]
@@ -125,6 +146,8 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
                 self.result_en += line
             self.textBrowser_d.setText(self.result_en)
             self.xor_key = 'default'
+            char_dict = DataOP.get_char_num(self.result_en)
+            self.print_charnum(isfile, char_dict)
     
     def playfair_encode(self, isfile):
         if isfile:
@@ -134,6 +157,8 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
             for line in result_list:
                 self.result_en += line
             self.textBrowser_file.setText(self.result_en)
+            char_dict = DataOP.get_char_num(self.result_en)
+            self.print_charnum(isfile, char_dict)
         else:
             self.input = self.input_str_d.toPlainText()
             data = [self.input]
@@ -142,6 +167,8 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
             for line in result_list:
                 self.result_en += line
             self.textBrowser_d.setText(self.result_en)
+            char_dict = DataOP.get_char_num(self.result_en)
+            self.print_charnum(isfile, char_dict)
             
     def hill_encode(self, isfile:bool):
         if isfile:
@@ -153,6 +180,8 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
                 self.result_en += line
             self.textBrowser_file.setText(self.result_en)
             self.hill_key = [[5, 15, 18, 15, 10], [22, 10, 35, 10, 37], [28, 33, 31, 7, 30], [14, 35, 33, 38, 28], [30, 0, 37, 26, 6]]
+            char_dict = DataOP.get_char_num(self.result_en)
+            self.print_charnum(isfile, char_dict)
         else:
             self.input = self.input_str_d.toPlainText()
             data = [self.input]
@@ -163,6 +192,8 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
                 self.result_en += line
             self.textBrowser_d.setText(self.result_en)
             self.hill_key = [[5, 15, 18, 15, 10], [22, 10, 35, 10, 37], [28, 33, 31, 7, 30], [14, 35, 33, 38, 28], [30, 0, 37, 26, 6]]
+            char_dict = DataOP.get_char_num(self.result_en)
+            self.print_charnum(isfile, char_dict)
     
     def caesar_decode(self, isfile:bool):
         if isfile:
@@ -174,6 +205,8 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
                 self.result += line
             self.textBrowser_file.setText(self.result)
             self.caesar_key = 5
+            char_dict = DataOP.get_char_num(self.result)
+            self.print_charnum(isfile, char_dict)
         else:
             self.input = self.input_str_d.toPlainText()
             data = [self.input]
@@ -184,6 +217,8 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
                 self.result += line
             self.textBrowser_d.setText(self.result)
             self.caesar_key = 5
+            char_dict = DataOP.get_char_num(self.result)
+            self.print_charnum(isfile, char_dict)
             
     def XOR_decode(self, isfile):
         if isfile:
@@ -195,6 +230,8 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
                 self.result += line
             self.textBrowser_file.setText(self.result)
             self.xor_key = 'default'
+            char_dict = DataOP.get_char_num(self.result)
+            self.print_charnum(isfile, char_dict)
         else:
             self.input = self.input_str_d.toPlainText()
             data = [self.input]
@@ -205,6 +242,8 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
                 self.result += line
             self.textBrowser_d.setText(self.result)
             self.xor_key = 'default'
+            char_dict = DataOP.get_char_num(self.result)
+            self.print_charnum(isfile, char_dict)
     
     def playfair_decode(self, isfile):
         if isfile:
@@ -214,6 +253,8 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
             for line in result_list:
                 self.result += line
             self.textBrowser_file.setText(self.result)
+            char_dict = DataOP.get_char_num(self.result)
+            self.print_charnum(isfile, char_dict)
         else:
             self.input = self.input_str_d.toPlainText()
             data = [self.input]
@@ -222,6 +263,8 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
             for line in result_list:
                 self.result += line
             self.textBrowser_d.setText(self.result)
+            char_dict = DataOP.get_char_num(self.result)
+            self.print_charnum(isfile, char_dict)
             
     def hill_decode(self, isfile:bool):
         if isfile:
@@ -233,6 +276,8 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
                 self.result += line
             self.textBrowser_file.setText(self.result)
             self.hill_key = [[5, 15, 18, 15, 10], [22, 10, 35, 10, 37], [28, 33, 31, 7, 30], [14, 35, 33, 38, 28], [30, 0, 37, 26, 6]]
+            char_dict = DataOP.get_char_num(self.result)
+            self.print_charnum(isfile, char_dict)
         else:
             self.input = self.input_str_d.toPlainText()
             data = [self.input]
@@ -243,9 +288,6 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
                 self.result += line
             self.textBrowser_d.setText(self.result)
             self.hill_key = [[5, 15, 18, 15, 10], [22, 10, 35, 10, 37], [28, 33, 31, 7, 30], [14, 35, 33, 38, 28], [30, 0, 37, 26, 6]]
+            char_dict = DataOP.get_char_num(self.result)
+            self.print_charnum(isfile, char_dict)
 
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    myWin = MyMainForm()
-    myWin.show()
-    sys.exit(app.exec_())
