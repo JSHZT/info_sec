@@ -3,8 +3,8 @@ import os
 import sys
 sys.path.append(os.path.abspath(os.path.join(os.getcwd(), ".")))
 sys.path.append(os.path.abspath(os.path.dirname(os.path.abspath(os.path.abspath(__file__))) + os.path.sep + "."))
-
 from PyQt5.QtWidgets import QMainWindow, QMessageBox
+from PyQt5.QtGui import QIcon
 from PyQt5 import QtWidgets
 from mainwin import Ui_MainWindow
 from utils import DataOP, Caesar_code, XOR_code, hill_code, Playfair
@@ -13,6 +13,7 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
         super(MyMainForm, self).__init__(parent)
         self.setupUi(self)
+        self.set_window()
         self.result = ''
         self.result_en = ''
         self.URL_show.setText('./')
@@ -30,6 +31,9 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
         self.ouput_file_en.clicked.connect(self.output_file_enc)
         self.menu.addAction('系统概述', self.introduction)
         
+    def set_window(self):
+        self.setWindowTitle('加密解密集成工具')
+        self.setWindowIcon(QIcon('./icon/sys.ico'))
         
     def introduction(self):
         QMessageBox.about(self, '系统概述',
