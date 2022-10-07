@@ -26,7 +26,7 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
         if way == 'Caecar(凯撒加密解密)':
             self.caesar_encode(isfile=True)
         elif way == "XOR(异或加密解密)":
-            pass
+            self.XOR_encode(isfile=True)
         elif way == "Playfair(皮菲特加密解密)":
             pass
         elif way == "Hill(希尔加密解密)":
@@ -49,14 +49,37 @@ class MyMainForm(QMainWindow, Ui_MainWindow):
             for line in result_list:
                 self.result += line
             self.textBrowser_file.setText(self.result)
+            self.caesar_key = 5
         else:
-            data = DataOP.load_data().load_txt_gui(self.input)
-            self.caesar_key = int(self.input_key_file.toPlainText()) if self.input_key_file.toPlainText() else self.caesar_key
+            data = [self.input]
+            self.caesar_key = int(self.input_key_d.toPlainText()) if self.input_key_d.toPlainText() else self.caesar_key
             result_list = Caesar_code.Caesar_code().Encryption(data=data, key=self.caesar_key)
             self.result = ''
             for line in result_list:
                 self.result += line
+            self.textBrowser_d.setText(self.result)
+            self.caesar_key = 5
+            
+    def XOR_encode(self, isfile):
+        if isfile:
+            data = DataOP.load_data().load_txt_gui(self.filepath)
+            self.caesar_key = int(self.input_key_file.toPlainText()) if self.input_key_file.toPlainText() else self.xor_key
+            result_list = XOR_code.XOR_code().Encryption(data=data, key=self.xor_key)
+            self.result = ''
+            for line in result_list:
+                self.result += line
             self.textBrowser_file.setText(self.result)
+            self.xor_key = 'default'
+        else:
+            data = [self.input]
+            self.xor_key = int(self.input_key_d.toPlainText()) if self.input_key_d.toPlainText() else self.xor_key
+            result_list = XOR_code.XOR_code().Encryption(data=data, key=self.xor_key)
+            self.result = ''
+            for line in result_list:
+                self.result += line
+            self.textBrowser_d.setText(self.result)
+            self.xor_key = 'default'
+            
 
 
 if __name__ == "__main__":
