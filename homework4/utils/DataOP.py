@@ -21,8 +21,9 @@ class load_data(object):
         return data
     
 class save_data(object):
-    def write_txt():
-        pass
+    def write_txt_gui(a, data,  filepath):
+        with open(filepath,"w") as f:
+            f.write(data)
     
 def get_char_num(data:list)->dict:
     charset = set(data)

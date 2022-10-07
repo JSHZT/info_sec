@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="d_tab">
      <attribute name="title">
@@ -226,11 +226,11 @@
        <string>点击解密</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="ouput_file">
+     <widget class="QPushButton" name="ouput_file_en">
       <property name="geometry">
        <rect>
         <x>310</x>
-        <y>410</y>
+        <y>470</y>
         <width>141</width>
         <height>23</height>
        </rect>
@@ -257,12 +257,25 @@
        <rect>
         <x>540</x>
         <y>90</y>
-        <width>72</width>
-        <height>15</height>
+        <width>181</width>
+        <height>16</height>
        </rect>
       </property>
       <property name="text">
-       <string>密文预览</string>
+       <string>密文及明文预览</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="ouput_file_de">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>430</y>
+        <width>141</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>输出解密文件</string>
       </property>
      </widget>
     </widget>
