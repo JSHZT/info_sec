@@ -13,6 +13,13 @@ class load_data(object):
                 data.append(line.strip('\n'))
         return data
     
+    def load_txt_gui(a, filePath):
+        data = []
+        with open(filePath) as f:
+            for line in f.readlines():
+                data.append(line.strip('\n'))
+        return data
+    
 class save_data(object):
     def write_txt():
         pass

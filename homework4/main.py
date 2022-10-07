@@ -3,7 +3,7 @@ from utils import DataOP, Caesar_code, XOR_code, hill_code, Playfair
 def loop():
     notvalid = True 
     hill_key = [[5, 15, 18, 15, 10], [22, 10, 35, 10, 37], [28, 33, 31, 7, 30], [14, 35, 33, 38, 28], [30, 0, 37, 26, 6]]
-    xor_key = 'default',
+    xor_key = 'default'
     caesar_key = 5
     while 1:
         isencode = True if (input("请选择加密还是解密：1.加密 2.解密\n")=='1') else False

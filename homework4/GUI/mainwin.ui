@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="d_tab">
      <attribute name="title">
@@ -50,7 +50,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QTextEdit" name="textEdit_2"/>
+          <widget class="QTextEdit" name="input_str_d"/>
          </item>
          <item>
           <widget class="QLabel" name="label">
@@ -60,14 +60,14 @@
           </widget>
          </item>
          <item>
-          <widget class="QTextEdit" name="textEdit_3"/>
+          <widget class="QTextEdit" name="input_key_d"/>
          </item>
         </layout>
        </item>
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
-          <widget class="QComboBox" name="comboBox">
+          <widget class="QComboBox" name="comboBox_d">
            <item>
             <property name="text">
              <string>XOR(异或加密解密)</string>
@@ -116,7 +116,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QTextBrowser" name="textBrowser"/>
+          <widget class="QTextBrowser" name="textBrowser_d"/>
          </item>
         </layout>
        </item>
@@ -127,7 +127,7 @@
      <attribute name="title">
       <string>文件加密解密(暂时仅支持txt文件)</string>
      </attribute>
-     <widget class="QComboBox" name="comboBox_2">
+     <widget class="QComboBox" name="comboBox_file">
       <property name="geometry">
        <rect>
         <x>280</x>
@@ -157,7 +157,7 @@
        </property>
       </item>
      </widget>
-     <widget class="QLineEdit" name="lineEdit">
+     <widget class="QLineEdit" name="URL_show">
       <property name="geometry">
        <rect>
         <x>150</x>
@@ -167,7 +167,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="chose_button">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -180,7 +180,7 @@
        <string>选择文件</string>
       </property>
      </widget>
-     <widget class="QTextEdit" name="textEdit">
+     <widget class="QTextEdit" name="input_key_file">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -190,7 +190,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="QPushButton" name="encode_button_d_2">
+     <widget class="QPushButton" name="encode_button_file">
       <property name="geometry">
        <rect>
         <x>280</x>
@@ -203,7 +203,7 @@
        <string>点击加密</string>
       </property>
      </widget>
-     <widget class="QTextBrowser" name="textBrowser_2">
+     <widget class="QTextBrowser" name="textBrowser_file">
       <property name="geometry">
        <rect>
         <x>530</x>
@@ -213,7 +213,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="QPushButton" name="decode_button_d_2">
+     <widget class="QPushButton" name="decode_button_file">
       <property name="geometry">
        <rect>
         <x>280</x>
@@ -226,7 +226,7 @@
        <string>点击解密</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="decode_button_d_3">
+     <widget class="QPushButton" name="ouput_file">
       <property name="geometry">
        <rect>
         <x>310</x>
