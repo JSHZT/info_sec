@@ -7,7 +7,6 @@ from tkinter import ttk
 import threading
 import random
 def gbgui():
-    # IP置换表
     IP_table = [58, 50, 42, 34, 26, 18, 10, 2,
                 60, 52, 44, 36, 28, 20, 12, 4,
                 62, 54, 46, 38, 30, 22, 14, 6,
@@ -17,7 +16,6 @@ def gbgui():
                 61, 53, 45, 37, 29, 21, 13, 5,
                 63, 55, 47, 39, 31, 23, 15, 7]
 
-    # IP逆置换
     _IP_table = [40, 8, 48, 16, 56, 24, 64, 32,
                  39, 7, 47, 15, 55, 23, 63, 31,
                  38, 6, 46, 14, 54, 22, 62, 30,
@@ -27,7 +25,6 @@ def gbgui():
                  34, 2, 42, 10, 50, 18, 58, 26,
                  33, 1, 41, 9, 49, 17, 57, 25]
 
-    # S盒
     s = [[[14, 4, 13, 1, 2, 15, 11, 8, 3, 10, 6, 12, 5, 9, 0, 7],
           [0, 15, 7, 4, 14, 2, 13, 1, 10, 6, 12, 11, 9, 5, 3, 8],
           [4, 1, 14, 8, 13, 6, 2, 11, 15, 12, 9, 7, 3, 10, 5, 0],
@@ -68,7 +65,6 @@ def gbgui():
           [7, 11, 4, 1, 9, 12, 14, 2, 0, 6, 10, 13, 15, 3, 5, 8],
           [2, 1, 14, 7, 4, 10, 8, 13, 15, 12, 9, 0, 3, 5, 6, 11]]]
 
-    # P盒
     P = [16, 7, 20, 21,
          29, 12, 28, 17,
          1, 15, 23, 26,
@@ -78,7 +74,6 @@ def gbgui():
          19, 13, 30, 6,
          22, 11, 4, 25]
 
-    # 置换表1
     change1 = [57, 49, 41, 33, 25, 17, 9,
                1, 58, 50, 42, 34, 26, 18,
                10, 2, 59, 51, 43, 35, 27,
@@ -88,7 +83,6 @@ def gbgui():
                14, 6, 61, 53, 45, 37, 29,
                21, 13, 5, 28, 20, 12, 4]
 
-    # 置换表2
     change2 = [14, 17, 11, 24, 1, 5,
                3, 28, 15, 6, 21, 10,
                23, 19, 12, 4, 26, 8,
@@ -98,7 +92,6 @@ def gbgui():
                44, 49, 39, 56, 34, 53,
                46, 42, 50, 36, 29, 32]
 
-    # 32为扩展成48位表
     extend = [32, 1, 2, 3, 4, 5,
               4, 5, 6, 7, 8, 9,
               8, 9, 10, 11, 12, 13,
@@ -108,7 +101,6 @@ def gbgui():
               24, 25, 26, 27, 28, 29,
               28, 29, 30, 31, 32, 1]
 
-    # 左移位数规则
     d = [1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1]
 
 
@@ -117,45 +109,30 @@ def gbgui():
             pass
 
         def keyfirstchange(self, key):
-            """
-            密钥初始置换
-            """
             return_list = ''
             for i in range(56):
                 return_list += key[change1[i] - 1]
             return return_list
 
         def keysecondchange(self, key):
-            """
-            第二次置换
-            """
             return_list = ''
             for i in range(48):
                 return_list += key[change2[i] - 1]
             return return_list
 
         def codefirstchange(self, code):
-            '''
-            明文或密文初始置换
-            '''
             changed_code = ''
             for i in range(64):
                 changed_code += code[IP_table[i] - 1]
             return changed_code
 
         def functionE(self, code):
-            '''
-            扩展运算
-            '''
             return_list = ''
             for i in range(48):
                 return_list += code[extend[i] - 1]
             return return_list
 
         def codeyihuo(self, code, key):
-            '''
-            异或运算
-            '''
             code_len = len(key)
             return_list = ''
             for i in range(code_len):
@@ -166,9 +143,6 @@ def gbgui():
             return return_list
 
         def functions(self, key):
-            '''
-            s盒代替
-            '''
             return_list = ''
             for i in range(8):
                 row = int(str(key[i * 6]) + str(key[i * 6 + 5]), 2)
@@ -177,36 +151,25 @@ def gbgui():
             return return_list
 
         def changtos(self, o, lens):
-            '''
-            二进制转换
-            '''
             return_code = ''
             for i in range(lens):
                 return_code = str(o >> i & 1) + return_code
             return return_code
 
         def functionp(self, code):
-            '''
-            p置换
-            '''
             return_list = ''
             for i in range(32):
                 return_list += code[P[i] - 1]
             return return_list
 
         def nichange(self, code):
-            '''
-            逆初始置换
-            '''
+
             return_list = ''
             for i in range(64):
                 return_list += code[_IP_table[i] - 1]
             return return_list
 
         def getkey(self, key):
-            '''
-            获取子密钥
-            '''
             b = []
             key_l = key[0:28]
             key_r = key[28:56]
@@ -219,9 +182,6 @@ def gbgui():
             return b
 
         def changekey(self, key, i):
-            '''
-            改变密钥
-            '''
             changekey = list(map(int, key))
             j = 0
             while j < (i + 1):
@@ -231,7 +191,6 @@ def gbgui():
             return str(changekey)
 
         def changecode(self, code, i):
-            
             changecode = list(map(int, code))
             j = 0
             while j < (i + 1):
@@ -269,14 +228,10 @@ def gbgui():
         for i in range(64):
             avg = 0
             print('密钥不变，明文改变' + str(i + 1) + '位')
-            # print('原始明文：'+code)
-            # print('改变的明文：'+des.changecode(code,i))
             for j in range(100):
                 change = 0
                 changecode = encrypt(des.changecode(code, i),
                                      '0011000100110010001100110011010000110101001101100011011100111000')
-                # print('原始密钥:'+key)
-                # print('改变后的密文：'+changecode)
                 for a in range(64):
                     if changecode[a] != code[a]:
                         change += 1
