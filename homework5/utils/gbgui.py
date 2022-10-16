@@ -239,3 +239,201 @@ def gbgui():
                 changecode[change] = ((changecode[change] + 1) % 2)
                 j += 1
             return str(changecode)
+    
+    def encrypt(from_code, key):
+        changekey = key
+        des = DES()
+        code = des.codefirstchange(from_code)
+        key = des.keyfirstchange(key)
+        run_code = ''
+        output = ''
+        key_code = des.getkey(key)
+        code_l = code[0:32]
+        code_r = code[32:64]
+        for j in range(16):
+            code = code_r
+            code_r = des.functionE(code_r)
+            key_y = key_code[j]
+            code_r = des.codeyihuo(code_r, key_y)
+            code_r = des.functions(code_r)
+            code_r = des.functionp(code_r)
+            code_r = des.codeyihuo(code_l, code_r)
+            code_l = code
+        code_l, code_r = code_r, code_l
+        run_code = code_l + code_r
+        output += des.nichange(run_code)
+        return output
+
+    def from_codetocode(key, code):
+        des = DES()
+        for i in range(64):
+            avg = 0
+            print('密钥不变，明文改变' + str(i + 1) + '位')
+            # print('原始明文：'+code)
+            # print('改变的明文：'+des.changecode(code,i))
+            for j in range(100):
+                change = 0
+                changecode = encrypt(des.changecode(code, i),
+                                     '0011000100110010001100110011010000110101001101100011011100111000')
+                # print('原始密钥:'+key)
+                # print('改变后的密文：'+changecode)
+                for a in range(64):
+                    if changecode[a] != code[a]:
+                        change += 1
+                avg = avg + change
+            avg = avg / 100
+            print('密文改变了' + str(avg) + '位')
+
+
+    def decrypt(code, key):
+        des = DES()
+        code = des.codefirstchange(code)
+        key = des.keyfirstchange(key)
+        run_code = ''
+        output = ''
+        key_code = des.getkey(key)
+        code_l = code[0:32]
+        code_r = code[32:64]
+        for j in range(16):
+            code = code_r
+            code_r = des.functionE(code_r)
+
+            key_y = key_code[15 - j]
+            code_r = des.codeyihuo(code_r, key_y)
+            code_r = des.functions(code_r)
+            code_r = des.functionp(code_r)
+            code_r = des.codeyihuo(code_l, code_r)
+            code_l = code
+        code_l, code_r = code_r, code_l
+        run_code = code_l + code_r
+        output += des.nichange(run_code)
+        print('明文：' + output)
+
+    def thread_it(func, *args):
+        t = threading.Thread(target=func, args=args)
+        t.setDaemon(True)
+        t.start()
+        
+    def start():
+        def keytocode(key, code, time):
+            des = DES()
+            allavg = 0
+            for alltime in range(time):
+                avg = 0
+                text.insert(END, "\n\n--------------------------------------------第" + str(
+                    alltime + 1) + "次统计---------------------------------------------\n\n")
+                for i in range(64):
+                    change = 0
+                    changecode = encrypt(code, des.changekey(key, i))
+                    text.insert(END, "明文不变，密钥改变" + str(i + 1) + '位:' + str(changecode) + "       ")
+                    for a in range(64):
+                        if changecode[a] != code[a]:
+                            change += 1
+                    text.insert(END, '密文改变了' + str(change) + '位\n')
+                    avg += change
+                avg = avg / 64
+                text2.insert(END, '第' + str(alltime + 1) + '次统计：' + str(avg) + '\n\n')
+                allavg += avg
+            alla = allavg / time
+            text2.insert(END, '总计改变次数：' + str(alla) + '\n\n')
+
+        def from_codetocode(key, code, time):
+            des = DES()
+            allavg = 0
+            for alltime in range(time):
+                avg = 0
+                text.insert(END, "\n\n--------------------------------------------第" + str(
+                    alltime + 1) + "次统计---------------------------------------------\n\n")
+                for i in range(64):
+                    change = 0
+                    changecode = encrypt(des.changekey(key, i), code)
+                    text.insert(END, "密钥不变，明文改变" + str(i + 1) + '位:' + str(changecode) + "       ")
+                    for a in range(64):
+                        if changecode[a] != code[a]:
+                            change += 1
+                    text.insert(END, '明文改变了' + str(change) + '位\n')
+                    avg += change
+                avg = avg / 64
+                text2.insert(END, '第' + str(alltime + 1) + '次统计：' + str(avg) + '\n\n')
+                allavg += avg
+            alla = allavg / time
+            text2.insert(END, '总计改变次数：' + str(alla) + '\n\n')
+
+        getfunction = cmb.get()
+        getzhi = int(mentry.get())
+        code = mentry1.get()
+        key = mentry2.get()
+        text.delete('1.0', 'end')
+        text2.delete('1.0', 'end')
+        if getfunction == '明文固定，密钥改变':
+            keytocode(key, code, getzhi)
+
+        else:
+            from_codetocode(key, code, getzhi)
+
+
+    wuya = tkinter.Tk()
+
+    wuya.title("明文/密钥 固定，密钥/明文 改变")
+    wuya.geometry("1200x650+10+20")
+    frmb = Frame(wuya)
+    frmb.grid(row=0, column=0, pady=10)
+    frmbutton = Frame(wuya)
+    frmbutton.grid(row=1, column=0, padx=5, pady=10)
+    frmbtree = Frame(wuya)
+    frmbtree.grid(row=2, column=0, padx=20, pady=10)
+
+    blabel = Label(frmb, text='明文/密钥 固定，密钥/明文 改变', justify=LEFT, font=("微软雅黑", 21), fg='blue')
+    blabel.grid(row=0, column=0)
+
+    mlabel = Label(frmbutton, text='指定一个Sbox：')
+
+    mlabel.grid(row=1, column=0)
+    cmb = ttk.Combobox(frmbutton)
+    cmb.grid(row=1, column=1)
+    cmb['value'] = ('明文固定，密钥改变', '密钥固定，明文改变')
+    cmb.current(0)
+
+    glabel = Label(frmbutton, text='输入统计次数：')
+    glabel.grid(row=2, column=0)
+
+    mentry = Entry(frmbutton, text='请输入1', width=70, cursor='mouse', insertbackground="red",
+                   highlightcolor="red", highlightbackground="green")
+
+    mentry.grid(row=2, column=1)
+
+    glabel1 = Label(frmbutton, text='输入明文：')
+    glabel1.grid(row=3, column=0)
+
+    mentry1 = Entry(frmbutton, text='请输入2', width=70, cursor='mouse', insertbackground="red",
+                    highlightcolor="red", highlightbackground="green")
+
+    mentry1.grid(row=3, column=1)
+    glabel2 = Label(frmbutton, text='输入密文：')
+    glabel2.grid(row=4, column=0)
+
+    mentry2 = Entry(frmbutton, text='请输入3', width=70, cursor='mouse', insertbackground="red",
+                    highlightcolor="red", highlightbackground="green")
+
+    mentry2.grid(row=4, column=1)
+
+    mentry.insert(END, "10")
+    mentry1.insert(END, "0011000100110010001100110011010000110101001101100011011100111000")
+    mentry2.insert(END, "1000101110110100011110100000110011110000101010010110001001101101")
+
+    thebutton1 = Button(frmbutton, text="开始统计", bg="lightblue", width=25,
+                        command=lambda: thread_it(start()))
+    thebutton1.grid(row=5, column=1, pady=5)
+
+    gtblabel = Label(frmbtree, text='过程：')
+    gtblabel.grid(row=0, column=0)
+
+    text = Text(frmbtree, width=110, height=30)
+    text.grid(row=1, column=0)
+
+    gtlabelw = Label(frmbtree, text='平均次数：')
+    gtlabelw.grid(row=0, column=1)
+    text2 = Text(frmbtree, width=50, height=30)
+    text2.grid(row=1, column=1, padx=15)
+
+    wuya.mainloop()
