@@ -49,3 +49,5 @@ class Prime(object):
         for i in range(2,n-1):
             if multimod(i,k,n)!=1:
                 return i
+            
+print(multinv(3, 10))

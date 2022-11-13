@@ -26,7 +26,6 @@ class ServerSocket(socketserver.BaseRequestHandler):
 		jsonData = jsonData["dh-keyexchange"]
 		publicSecret = int(jsonData["publicSecret"])
 		self.__dh.calcSharedSecret(publicSecret)
-  
 	def handle(self):
 		self.__debugflag = self.server.conn
 		self.__dh = dh_.DH()
