@@ -1,0 +1,51 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 268435457 (0x10000001)
+        Signature Algorithm: ecdsa-with-SHA256
+        Issuer: C=CN, ST=GD, L=GZ, O=GDUT, OU=STUDENT, CN=HZT/emailAddress=hzt3016@gmail.com
+        Validity
+            Not Before: Dec 22 05:00:20 2022 GMT
+            Not After : Dec 22 05:00:20 2023 GMT
+        Subject: C=CN, ST=GD, O=GDUT, OU=STUDENT, CN=HZT/emailAddress=hzt3016@gmail.com
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub:
+                    04:60:c6:58:7e:77:76:69:91:ac:4f:0c:50:de:a1:
+                    30:a6:6b:7b:54:86:d1:c2:0e:9a:5f:47:e8:83:f5:
+                    4a:bb:31:91:04:1c:67:b4:e3:ce:e0:1f:f9:e8:9f:
+                    ff:30:b7:1d:10:9f:13:71:2a:49:60:f9:81:e7:54:
+                    82:98:e4:99:d0
+                ASN1 OID: prime256v1
+                NIST CURVE: P-256
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                OpenSSL Generated Certificate
+            X509v3 Subject Key Identifier: 
+                15:54:AE:5C:76:83:B8:09:DE:6D:38:60:4E:42:65:E5:52:49:85:F6
+            X509v3 Authority Key Identifier: 
+                keyid:4E:89:51:2F:81:35:61:24:5B:CB:B0:53:B2:3A:9C:8E:95:D2:38:E9
+
+    Signature Algorithm: ecdsa-with-SHA256
+         30:45:02:20:5f:e0:d4:f4:84:b4:3e:7d:70:93:2b:df:16:d4:
+         e5:0f:3a:a6:b5:0b:67:45:cc:fe:ea:e2:bc:06:1e:ed:c5:34:
+         02:21:00:b3:f2:3d:df:c1:ad:94:14:db:21:83:a4:bf:76:eb:
+         8b:4a:d0:db:60:19:e1:9e:eb:d0:ec:c7:42:9d:b7:17:84
+-----BEGIN CERTIFICATE-----
+MIICUDCCAfagAwIBAgIEEAAAATAKBggqhkjOPQQDAjB4MQswCQYDVQQGEwJDTjEL
+MAkGA1UECAwCR0QxCzAJBgNVBAcMAkdaMQ0wCwYDVQQKDARHRFVUMRAwDgYDVQQL
+DAdTVFVERU5UMQwwCgYDVQQDDANIWlQxIDAeBgkqhkiG9w0BCQEWEWh6dDMwMTZA
+Z21haWwuY29tMB4XDTIyMTIyMjA1MDAyMFoXDTIzMTIyMjA1MDAyMFowazELMAkG
+A1UEBhMCQ04xCzAJBgNVBAgMAkdEMQ0wCwYDVQQKDARHRFVUMRAwDgYDVQQLDAdT
+VFVERU5UMQwwCgYDVQQDDANIWlQxIDAeBgkqhkiG9w0BCQEWEWh6dDMwMTZAZ21h
+aWwuY29tMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEYMZYfnd2aZGsTwxQ3qEw
+pmt7VIbRwg6aX0fog/VKuzGRBBxntOPO4B/56J//MLcdEJ8TcSpJYPmB51SCmOSZ
+0KN7MHkwCQYDVR0TBAIwADAsBglghkgBhvhCAQ0EHxYdT3BlblNTTCBHZW5lcmF0
+ZWQgQ2VydGlmaWNhdGUwHQYDVR0OBBYEFBVUrlx2g7gJ3m04YE5CZeVSSYX2MB8G
+A1UdIwQYMBaAFE6JUS+BNWEkW8uwU7I6nI6V0jjpMAoGCCqGSM49BAMCA0gAMEUC
+IF/g1PSEtD59cJMr3xbU5Q86prULZ0XM/urivAYe7cU0AiEAs/I938GtlBTbIYOk
+v3bri0rQ22AZ4Z7r0OzHQp23F4Q=
+-----END CERTIFICATE-----

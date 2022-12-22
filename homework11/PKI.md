@@ -43,4 +43,20 @@
     `openssl ecparam -out server.key -name prime256v1 -genkey`
 
 * 生成CSR请求
+
+    `openssl req -new -key server.key -out server.csr -sha256`
     ![](img\35.png)
+
+* 使用ECC CA私钥，CA证书，对server.csr进行签名，生成服务端证书
+
+    `openssl ca -keyfile ../private/ec-cakey.pem -cert ../cert/ec-cacert.pem -in server.csr -out server.crt -config ../openssl.cnf`
+    ![](img\36.png)
+
+* 验证证书是否有效时使用CA证书
+
+    `openssl verify -CAfile ../cert/ec-cacert.pem server.crt`
+    ![](img\37.png)
+
+* 验证index.txt
+
+    ![](img\38.png)
