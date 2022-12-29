@@ -1,6 +1,6 @@
 ### 版本说明
 
-已完成至第十一次作业
+已完成至第十一次作业,作业内容已同步到[GitHub](https://github.com/JSHZT/info_sec)
 
 - 第一次作业：
   - [homework1/study_report_git.txt](homework1\study_report_git.txt)
